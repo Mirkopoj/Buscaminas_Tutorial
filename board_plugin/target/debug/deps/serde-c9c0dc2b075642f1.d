@@ -1,0 +1,14 @@
+/home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/deps/serde-c9c0dc2b075642f1.d: /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/lib.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/integer128.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/mod.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/de.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/ser.rs /home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/build/serde-8db2c892e172e04f/out/private.rs
+
+/home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/deps/libserde-c9c0dc2b075642f1.rlib: /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/lib.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/integer128.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/mod.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/de.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/ser.rs /home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/build/serde-8db2c892e172e04f/out/private.rs
+
+/home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/deps/libserde-c9c0dc2b075642f1.rmeta: /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/lib.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/integer128.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/mod.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/de.rs /home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/ser.rs /home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/build/serde-8db2c892e172e04f/out/private.rs
+
+/home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/lib.rs:
+/home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/integer128.rs:
+/home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/mod.rs:
+/home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/de.rs:
+/home/mirko/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.225/src/private/ser.rs:
+/home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/build/serde-8db2c892e172e04f/out/private.rs:
+
+# env-dep:OUT_DIR=/home/mirko/NAS/Juegos/buscaminas_tutorial/board_plugin/target/debug/build/serde-8db2c892e172e04f/out
