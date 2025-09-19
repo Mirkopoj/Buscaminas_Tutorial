@@ -15,6 +15,7 @@ fn main() {
         map_size: (20, 20),
         bomb_count: 40,
         tile_padding: 3.,
+        safe_start: true,
         ..Default::default()
     });
     app.add_plugins(BoardPlugin);

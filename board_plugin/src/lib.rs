@@ -1,6 +1,7 @@
 use bevy::log;
 use bevy::{ecs::relationship::RelatedSpawnerCommands, platform::collections::HashMap, prelude::*};
 
+use crate::components::Uncover;
 use crate::{
     bounds::Bounds2,
     components::{Bomb, BombNeighbor, Coordinate},
@@ -72,6 +73,7 @@ impl BoardPlugin {
         };
         let mut covered_tiles =
             HashMap::with_capacity((tile_map.width() * tile_map.height()).into());
+        let mut safe_start = None;
         commands
             .spawn((
                 Name::new("Board"),
@@ -99,8 +101,14 @@ impl BoardPlugin {
                     font,
                     Color::BLACK.lighter(0.25),
                     &mut covered_tiles,
+                    &mut safe_start,
                 );
             });
+        if options.safe_start {
+            if let Some(entity) = safe_start {
+                commands.entity(entity).insert(Uncover);
+            }
+        }
         commands.insert_resource(Board {
             tile_map,
             bounds: Bounds2 {
@@ -160,6 +168,7 @@ impl BoardPlugin {
         font: Handle<Font>,
         covered_tile_color: Color,
         covered_tiles: &mut HashMap<Coordinate, Entity>,
+        safe_start_entity: &mut Option<Entity>,
     ) {
         for (y, line) in tile_map.iter().enumerate() {
             for (x, tile_type) in line.iter().enumerate() {
@@ -195,6 +204,9 @@ impl BoardPlugin {
                         ))
                         .id();
                     covered_tiles.insert(coordinate, entity);
+                    if safe_start_entity.is_none() && *tile_type == Tile::Empty {
+                        *safe_start_entity = Some(entity)
+                    }
                 });
                 match tile_type {
                     Tile::Bomb => {
