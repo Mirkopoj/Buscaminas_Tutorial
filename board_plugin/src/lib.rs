@@ -15,14 +15,27 @@ mod events;
 pub mod resources;
 mod systems;
 
-pub struct BoardPlugin;
+pub struct BoardPlugin<T> {
+    pub running_state: T,
+    pub paused_state: T,
+}
 
-impl Plugin for BoardPlugin {
+impl<T: States> Plugin for BoardPlugin<T> {
     fn build(&self, app: &mut App) {
-        app.add_systems(Startup, Self::create_board)
-            .add_systems(Update, systems::input::input_handling)
-            .add_systems(Update, systems::uncover::trigger_event_handler)
-            .add_systems(Update, systems::uncover::uncover_tiles)
+        app.add_systems(OnEnter(self.running_state.clone()), Self::create_board)
+            .add_systems(
+                Update,
+                (
+                    systems::input::input_handling,
+                    systems::uncover::trigger_event_handler,
+                    systems::uncover::uncover_tiles,
+                )
+                    .run_if(in_state(self.running_state.clone())),
+            )
+            .add_systems(
+                OnExit(self.running_state.clone()),
+                Self::cleanup_board.run_if(not(in_state(self.paused_state.clone()))),
+            )
             .add_event::<TileTriggerEvent>();
         #[cfg(feature = "debug")]
         {
@@ -35,13 +48,17 @@ impl Plugin for BoardPlugin {
     }
 }
 
-impl BoardPlugin {
+impl<T> BoardPlugin<T> {
     pub fn create_board(
         mut commands: Commands,
         board_options: Option<Res<BoardOptions>>,
         window: Query<&Window>,
         asset_server: Res<AssetServer>,
+        board: Option<Res<Board>>,
     ) {
+        if board.is_some() {
+            return;
+        }
         let options = match board_options {
             None => BoardOptions::default(),
             Some(o) => o.clone(),
@@ -74,7 +91,7 @@ impl BoardPlugin {
         let mut covered_tiles =
             HashMap::with_capacity((tile_map.width() * tile_map.height()).into());
         let mut safe_start = None;
-        commands
+        let board_entity = commands
             .spawn((
                 Name::new("Board"),
                 Transform::from_translation(board_position),
@@ -103,7 +120,8 @@ impl BoardPlugin {
                     &mut covered_tiles,
                     &mut safe_start,
                 );
-            });
+            })
+            .id();
         if options.safe_start {
             if let Some(entity) = safe_start {
                 commands.entity(entity).insert(Uncover);
@@ -117,6 +135,7 @@ impl BoardPlugin {
             },
             tile_size,
             covered_tiles,
+            entity: board_entity,
         });
     }
 
@@ -236,5 +255,10 @@ impl BoardPlugin {
                 }
             }
         }
+    }
+
+    fn cleanup_board(board: Res<Board>, mut commands: Commands) {
+        commands.entity(board.entity).despawn();
+        commands.remove_resource::<Board>();
     }
 }
