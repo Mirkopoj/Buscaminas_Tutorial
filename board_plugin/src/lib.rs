@@ -1,4 +1,3 @@
-#[cfg(feature = "debug")]
 use bevy::log;
 use bevy::{ecs::relationship::RelatedSpawnerCommands, platform::collections::HashMap, prelude::*};
 
