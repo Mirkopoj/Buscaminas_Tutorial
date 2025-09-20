@@ -8,9 +8,6 @@ default = []
 debug = ["bevy-inspector-egui"]
 
 [dependencies]
-# Engine
-bevy = "0.16.1"
-
 # Serialization
 serde = "1.0"
 
@@ -19,3 +16,9 @@ rand = "0.9.2"
 
 # Hierarchy inspector debug
 bevy-inspector-egui = { version = "0.33.1", optional = true }
+
+getrandom = { version = "0.3", features = ["wasm_js"] }
+
+# Engine
+bevy = "0.16.1"
+

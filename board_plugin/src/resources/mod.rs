@@ -8,3 +8,7 @@ pub use board_options::*;
 mod board;
 
 pub use board::Board;
+
+mod board_assets;
+
+pub use board_assets::*;
